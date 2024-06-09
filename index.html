@@ -15,45 +15,54 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .card {
             position: relative;
             display: inline-block;
             text-align: center;
-            margin-bottom: 100px;
+            width: 100%;
+            max-width: 600px;
         }
         .card img {
-            width: 85%;
-            border-radius: 8px;
+            width: 100%;
+            border-radius: 10px;
         }
         .card input {
-            padding: 15px;
+            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 85%;
-            margin-top: 25px;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 20px;
+            box-sizing: border-box;
         }
         .card button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #250C5C;
+            background-color: #28a745;
             color: white;
             cursor: pointer;
             margin-top: 10px;
+            width: 100%;
         }
         .card button:hover {
             background-color: #218838;
         }
         .card .name {
             position: absolute;
-            top: 74%;
+            top: 76%;
             left: 43%;
+            transform: translate(-50%, -50%);
             color: #250C5C;
             font-size: 40px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-family: 'DecoType Naskh Variants', sans-serif;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         .download-btn {
             padding: 10px 20px;
@@ -63,9 +72,20 @@
             color: white;
             cursor: pointer;
             margin-top: 10px;
+            width: 100%;
         }
         .download-btn:hover {
             background-color: #0056b3;
+        }
+
+        /* استعلامات الوسائط لتحسين التجاوب */
+        @media (min-width: 600px) {
+            .card button, .download-btn {
+                width: auto;
+            }
+            .card input {
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -92,7 +112,7 @@
         function downloadImage() {
             html2canvas(document.getElementById("card")).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'معايدة.jpg';
+                link.download = 'معايدة.png';
                 link.href = canvas.toDataURL();
                 link.click();
             });
