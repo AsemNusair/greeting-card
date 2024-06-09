@@ -28,8 +28,8 @@
         #name {
             position: absolute;
             /* تعديل الموقع حسب احتياجاتك */
-            bottom: 87px; /* المسافة من الأسفل */
-            left: 150px;  /* المسافة من اليسار */
+            bottom: 86px; /* المسافة من الأسفل */
+            left: 160px;  /* المسافة من اليسار */
             font-size: 24px;
             color: #fff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -48,7 +48,7 @@
 </head>
 <body>
     <div id="card">
-        <div id="name">اسمك هنا</div>
+        <div id="name">اسمــك هنـــا</div>
     </div>
     <div id="name-input">
         <input type="text" id="nameField" placeholder="أدخل اسمك" oninput="updateName()" />
@@ -65,8 +65,8 @@
         function downloadImage() {
             html2canvas(document.getElementById('card')).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'card.jpeg';
-                link.href = canvas.toDataURL('image/jpeg');
+                link.download = 'card.png';
+                link.href = canvas.toDataURL('image/png');
                 link.click();
             });
         }
