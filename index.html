@@ -65,8 +65,8 @@
         function downloadImage() {
             html2canvas(document.getElementById('card')).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'card.png';
-                link.href = canvas.toDataURL('image/png');
+                link.download = 'card.jpeg';
+                link.href = canvas.toDataURL('image/jpeg');
                 link.click();
             });
         }
