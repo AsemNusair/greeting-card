@@ -92,7 +92,7 @@
         function downloadImage() {
             html2canvas(document.getElementById("card")).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'معايدة.png';
+                link.download = 'معايدة.jpg';
                 link.href = canvas.toDataURL();
                 link.click();
             });
