@@ -1,119 +1,72 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بطاقة معايدة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+            background-color: #f0f0f0;
         }
-        .card {
+        #card {
             position: relative;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-        }
-        .card img {
-            width: 100%;
+            width: 400px;
+            height: 600px;
+            background: url('Eid03.jpg') no-repeat center center;
+            background-size: cover;
+            border: 2px solid #ccc;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-        .card input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-            margin-top: 20px;
-            box-sizing: border-box;
-        }
-        .card button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #28a745;
-            color: white;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-        }
-        .card button:hover {
-            background-color: #218838;
-        }
-        .card .name {
+        #name {
             position: absolute;
-            top: 76%;
-            left: 43%;
-            transform: translate(-50%, -50%);
-            color: #250C5C;
-            font-size: 40px;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-family: 'DecoType Naskh Variants', sans-serif;
-            width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
+            /* تعديل الموقع حسب احتياجاتك */
+            bottom: 87px; /* المسافة من الأسفل */
+            left: 150px;  /* المسافة من اليسار */
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-        .download-btn {
+        #name-input {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
             padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
+            font-size: 16px;
+            margin: 5px;
             cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-        }
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
-
-        /* استعلامات الوسائط لتحسين التجاوب */
-        @media (min-width: 600px) {
-            .card button, .download-btn {
-                width: auto;
-            }
-            .card input {
-                width: 80%;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="card" id="card">
-        <div class="name" id="nameText"></div>
-        <img src="Eid03.jpg" alt="معايدة">
-        <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
-        <button onclick="addName()">إضافة الاسم</button>
+    <div id="card">
+        <div id="name">اسمك هنا</div>
     </div>
-    <button class="download-btn" onclick="downloadImage()">تحميل الصورة</button>
+    <div id="name-input">
+        <input type="text" id="nameField" placeholder="أدخل اسمك" oninput="updateName()" />
+        <button onclick="downloadImage()">تحميل الصورة</button>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-        function addName() {
-            var name = document.getElementById("nameInput").value;
-            if (name) {
-                document.getElementById("nameText").innerText = name;
-            } else {
-                alert("يرجى إدخال اسمك!");
-            }
+        function updateName() {
+            var name = document.getElementById('nameField').value;
+            document.getElementById('name').textContent = name;
         }
 
         function downloadImage() {
-            html2canvas(document.getElementById("card")).then(function(canvas) {
+            html2canvas(document.getElementById('card')).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'معايدة.png';
-                link.href = canvas.toDataURL();
+                link.download = 'card.png';
+                link.href = canvas.toDataURL('image/png');
                 link.click();
             });
         }
