@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطاقة معايدة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card img {
+            width: 50%;
+            border-radius: 5px;
+        }
+        .card input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            margin-top: 20px;
+        }
+        .card button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .card button:hover {
+            background-color: #218838;
+        }
+        .card .name {
+            position: absolute;
+            top: 75%;
+            left: 35%;
+            color: #28a745;
+            font-size: 60px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Cairo', sans-serif;
+        }
+        .download-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="name" id="nameText"></div>
+        <img src="asem.jpg" alt="معايدة">
+        <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+        <button onclick="addName()">إضافة الاسم</button>
+    </div>
+    <button class="download-btn" onclick="downloadImage()">تحميل الصورة</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script>
+        function addName() {
+            var name = document.getElementById("nameInput").value;
+            if (name) {
+                document.getElementById("nameText").innerText = name;
+            } else {
+                alert("يرجى إدخال اسمك!");
+            }
+        }
+
+        function downloadImage() {
+            html2canvas(document.getElementById("card")).then(function(canvas) {
+                var link = document.createElement('a');
+                link.download = 'معايدة.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
