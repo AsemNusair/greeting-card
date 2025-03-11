@@ -1,91 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقة معايدة</title>
+    <title>إدخال الاسم</title>
     <style>
+        @font-face {
+            font-family: 'HS Future';
+            src: url('HS-Future.ttf'); /* تأكد من وجود الخط في نفس المسار */
+        }
         body {
-            font-family: Comic Sans MS, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #1a1a2e;
+            color: white;
+            font-family: 'HS Future', sans-serif;
+            text-align: center;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
-        #card {
+        .background {
             position: relative;
-            width: 90vw;
-            max-width: 400px;
-            height: 60vh;
-            max-height: 600px;
-            background: url('Eid03.jpg') no-repeat center center;
+            width: 100vw;
+            height: 100vh;
+            background: url('image.png') no-repeat center center;
             background-size: cover;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
-        #name {
+        .input-container {
             position: absolute;
-            bottom: 14%;
-            left: 23%;
-            font-size: 1vw;
-            color: #0E1342;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            word-wrap: break-word;
-            width: 80%;
-        }
-        #name-input {
-            text-align: center;
-            margin-bottom: 30px;
-            width: 90vw;
-            max-width: 400px;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         input[type="text"] {
-            width: 100%;
+            font-family: 'HS Future', sans-serif;
+            font-size: 16px;
+            color: white;
+            background-color: transparent;
+            border: 2px solid #00aaff;
             padding: 10px;
-            font-size: 1em;
+            width: 300px;
+            text-align: center;
+            outline: none;
+            border-radius: 10px;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            margin: 5px;
-            cursor: pointer;
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <div id="card">
-        <div id="name">اسمك هنا</div>
+    <div class="background">
+        <div class="input-container">
+            <input type="text" placeholder="أدخل اسمك هنا...">
+        </div>
     </div>
-    <div id="name-input">
-        <input type="text" id="nameField" placeholder="أدخل اسمك" oninput="updateName()" />
-        <button onclick="downloadImage()">تحميل الصورة</button>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script>
-        function updateName() {
-            var name = document.getElementById('nameField').value;
-            document.getElementById('name').textContent = name;
-        }
-
-        function downloadImage() {
-            var card = document.getElementById('card');
-            html2canvas(card, {
-                scale: 2, // مضاعفة دقة الصورة
-                useCORS: true // السماح بالـ CORS
-            }).then(function(canvas) {
-                var link = document.createElement('a');
-                link.download = 'card.jpg';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
-        }
-    </script>
 </body>
 </html>
