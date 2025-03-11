@@ -7,7 +7,7 @@
     <style>
         @font-face {
             font-family: 'HS Future';
-            src: url('HS-Future.ttf'); /* تأكد من وجود الخط في نفس المسار */
+            src: url('https://github.com/AsemNusair/greeting-card/blob/main/HS%20Future%20Sans%20W23%20Bold.ttf');
         }
         body {
             background-color: #1a1a2e;
@@ -20,14 +20,15 @@
         }
         .background {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 800px;
+            height: 600px;
             background: url('https://asemnusair.github.io/greeting-card/image.png') no-repeat center center;
-            background-size: cover;
+            background-size: contain;
+            margin: auto;
         }
         .input-container {
             position: absolute;
-            top: 75%; /* تعديل الموضع ليتناسب مع مكان المربع الأحمر */
+            top: 75%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -46,13 +47,37 @@
         input[type="text"]::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-    <div class="background">
+    <div class="background" id="capture-area">
         <div class="input-container">
-            <input type="text" placeholder="أدخل اسمك هنا...">
+            <input type="text" id="user-name" placeholder="أدخل اسمك هنا...">
         </div>
     </div>
+    <button class="download-btn" onclick="downloadImage()">تحميل الصورة</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script>
+        function downloadImage() {
+            const element = document.getElementById("capture-area");
+            html2canvas(element).then(canvas => {
+                const link = document.createElement("a");
+                link.href = canvas.toDataURL("image/png");
+                link.download = "custom-greeting.png";
+                link.click();
+            });
+        }
+    </script>
 </body>
 </html>
